@@ -5,6 +5,9 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
+    "@babel/runtime": "~7.27.6",
+    "@expo/cli": "~56.1.14",
+    "@nx/expo": "23.2.0",
     "@nx/js": "23.2.0",
     "@nx/next": "23.2.0",
     "@nx/oxlint": "23.2.0",
@@ -15,6 +18,7 @@
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "babel-preset-expo": "~56.0.14",
     "nx": "23.2.0",
     "oxlint": "^1.75.0",
     "prettier": "^3.8.1",
@@ -22,8 +26,19 @@
     "typescript": "~6.0.3"
   },
   "dependencies": {
+    "@expo/metro": "~56.0.0",
+    "@expo/metro-runtime": "~56.0.14",
+    "@expo/vector-icons": "~15.1.0",
+    "expo": "~56.0.0",
+    "expo-splash-screen": "~56.0.10",
+    "expo-status-bar": "~56.0.4",
+    "expo-system-ui": "~56.0.5",
     "next": "~16.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-native": "0.85.3",
+    "react-native-svg": "15.12.1",
+    "react-native-svg-transformer": "~1.5.1",
+    "react-native-web": "~0.21.0"
   }
 }
