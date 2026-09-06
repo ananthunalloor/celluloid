@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "projectType": "application",
+  "sourceRoot": "apps/backend",
+  "targets": {
+    "dev": {
+      "command": "uv run python manage.py runserver 0.0.0.0:8000",
+      "options": {
+        "cwd": "apps/backend"
+      }
+    }
+  }
+}

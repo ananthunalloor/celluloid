@@ -1,0 +1,15 @@
+{
+  "name": "infra",
+  "projectType": "application",
+  "targets": {
+    "up": {
+      "command": "docker compose -f infra/compose/docker-compose.yml up -d"
+    },
+    "down": {
+      "command": "docker compose -f infra/compose/docker-compose.yml down"
+    },
+    "logs": {
+      "command": "docker compose -f infra/compose/docker-compose.yml logs -f"
+    }
+  }
+}
