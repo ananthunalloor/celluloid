@@ -28,6 +28,14 @@ INSTALLED_APPS = [
     # Third-party
     "rest_framework",
     "corsheaders",
+    # apps
+    "apps.accounts",
+    "apps.catalog",
+    "apps.media",
+    "apps.availability",
+    "apps.reviews",
+    "apps.discussion",
+    "apps.trust",
 ]
 
 MIDDLEWARE = [
