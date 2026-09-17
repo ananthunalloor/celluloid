@@ -5,6 +5,16 @@
   "scripts": {
     "eas-build-post-install": "cd ../../ && node tools/scripts/eas-build-post-install.mjs . apps/mobile"
   },
+  "nx": {
+    "targets": {
+      "format": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "oxfmt --write {projectRoot}"
+        }
+      }
+    }
+  },
   "dependencies": {
     "@expo/vector-icons": "*",
     "@expo/metro": "*",

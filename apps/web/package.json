@@ -3,7 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "nx": {
-    "sourceRoot": "apps/web/src"
+    "sourceRoot": "apps/web/src",
+    "targets": {
+      "format": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "oxfmt --write {projectRoot}"
+        }
+      }
+    }
   },
   "dependencies": {
     "next": "~16.1.6",
