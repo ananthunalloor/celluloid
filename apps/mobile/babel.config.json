@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    [
+      "@tamagui/babel-plugin",
+      { "config": "../../packages/ui/src/tamagui.config.ts", "components": ["tamagui", "@org/ui"] }
+    ]
+  ]
+}
