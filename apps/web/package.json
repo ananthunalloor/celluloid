@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "@org/ui": "workspace:*",
+    "@tamagui/config": "^2.7.7",
+    "@tamagui/core": "^2.7.7",
+    "@tamagui/web": "^2.7.7",
     "next": "~16.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
