@@ -1,0 +1,12 @@
+{
+  "singleQuote": true,
+  "printWidth": 100,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "/dist",
+    "/coverage",
+    "/.nx/cache",
+    "/.nx/workspace-data",
+    ".nx/self-healing"
+  ]
+}

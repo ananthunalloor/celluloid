@@ -19,5 +19,8 @@
     "customConditions": ["@org/source"],
     "noUncheckedSideEffectImports": false,
     "types": ["*"]
+  },
+  "paths": {
+    "@org/ui": ["packages/ui/src/index.ts"]
   }
 }

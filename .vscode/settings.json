@@ -1,5 +1,12 @@
 {
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeLinkDefinitions": "always"
-  }
+    // "source.organizeLinkDefinitions": "always",
+    "source.fixAll": "always",
+    // "source.formatDocument": "always"
+  },
+  // "[typescriptreact]": {
+  //   "editor.defaultFormatter": "oxc.oxc-vscode"
+  // }
 }

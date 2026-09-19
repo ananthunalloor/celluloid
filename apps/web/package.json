@@ -3,11 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "nx": {
-    "sourceRoot": "apps/web/src"
+    "sourceRoot": "apps/web/src",
+    "targets": {
+      "format": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "oxfmt --write {projectRoot}"
+        }
+      }
+    }
   },
   "dependencies": {
+    "@tamagui/next-plugin": "^2.7.7",
     "next": "~16.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "@org/ui": "workspace:*"
   }
 }
