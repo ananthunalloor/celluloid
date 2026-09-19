@@ -1,2 +1,2 @@
-export * from './tamagui.config';
+export * from './config/tamagui.config';
 export * from 'tamagui';

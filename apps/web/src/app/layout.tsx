@@ -1,4 +1,3 @@
-import './global.css';
 import { Providers } from './providers';
 
 export const metadata = {

@@ -1,5 +1,5 @@
-'use client';
-import { Button } from '@org/ui';
+"use client";
+import { Button } from "@org/ui";
 
 export default function Index() {
   return (
