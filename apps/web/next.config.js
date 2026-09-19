@@ -2,7 +2,7 @@
 const { withTamagui } = require('@tamagui/next-plugin');
 
 const withTamaguiConfig = withTamagui({
-  config: '../../packages/ui/src/tamagui.config.ts',
+  config: '../../packages/ui/src/config/tamagui.config.ts',
   components: ['tamagui', '@org/ui'],
   outputCSS: process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
 });
@@ -10,6 +10,7 @@ const withTamaguiConfig = withTamagui({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   turbopack: {},
+  transpilePackages: ['expo-blur'],
 };
 
 module.exports = withTamaguiConfig(nextConfig);

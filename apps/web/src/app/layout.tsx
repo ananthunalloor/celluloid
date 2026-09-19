@@ -1,4 +1,4 @@
-import { Providers } from './providers';
+import { ThemeProviders } from './providers';
 
 export const metadata = {
   title: 'Welcome to celluloid',
@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>{children}</Providers>
+        <ThemeProviders>{children}</ThemeProviders>
       </body>
     </html>
   );

@@ -14,10 +14,11 @@
     }
   },
   "dependencies": {
+    "@org/ui": "workspace:*",
     "@tamagui/next-plugin": "^2.7.7",
+    "@tamagui/next-theme": "^2.7.7",
     "next": "~16.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@org/ui": "workspace:*"
+    "react-dom": "^19.0.0"
   }
 }

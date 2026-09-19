@@ -3,7 +3,7 @@
 import { NextThemeProvider, useRootTheme } from '@tamagui/next-theme';
 import { TamaguiProvider } from '@org/ui';
 
-export function ThemeProviders({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useRootTheme();
 
   return (
