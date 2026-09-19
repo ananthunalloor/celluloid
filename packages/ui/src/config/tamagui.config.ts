@@ -1,11 +1,11 @@
 import { config as defaultConfig } from '@tamagui/config/v3';
 import { createTamagui } from '@tamagui/core';
 
-// import { tokens } from './tokens';
+import { tokens } from './tokens';
 import { fonts } from './fonts';
 import { themes } from './themes';
 
-export const config = createTamagui({ ...defaultConfig, fonts, themes });
+export const config = createTamagui({ ...defaultConfig, tokens, fonts, themes });
 
 export default config;
 
