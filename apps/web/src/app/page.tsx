@@ -1,11 +1,12 @@
-"use client";
-import { Button } from "@org/ui";
+'use client';
+
+import { Button, YStack } from '@org/ui';
 
 export default function Index() {
   return (
-    <div>
-      <Button>Click Me</Button>
-      <h1>Welcome to the Next.js App</h1>
-    </div>
+    <YStack flex={1} padding="$4" gap="$4" alignItems="flex-start">
+      <Button>Celluloid</Button>
+      <Button>Accent</Button>
+    </YStack>
   );
 }

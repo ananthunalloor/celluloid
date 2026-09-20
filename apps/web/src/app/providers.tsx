@@ -2,9 +2,9 @@
 
 import { TamaguiProvider, config } from '@org/ui';
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function ThemeProviders({ children }: { children: React.ReactNode }) {
   return (
-    <TamaguiProvider config={config} defaultTheme="light">
+    <TamaguiProvider config={config} defaultTheme="celluloid">
       {children}
     </TamaguiProvider>
   );
