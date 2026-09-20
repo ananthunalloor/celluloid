@@ -12,7 +12,7 @@
   "devDependencies": {
     "@tamagui/cli": "^2.7.7"
   },
-  "name": "@org/web",
+  "name": "@celluloid/web",
   "nx": {
     "sourceRoot": "apps/web/src",
     "targets": {

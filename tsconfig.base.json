@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "composite": true,
-    "customConditions": ["@org/source"],
+    "customConditions": ["@celluloid/source"],
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
