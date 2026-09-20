@@ -3,7 +3,7 @@ import { Button, config, TamaguiProvider } from '@org/ui';
 
 export const App = () => {
   return (
-    <TamaguiProvider config={config} defaultTheme="light">
+    <TamaguiProvider config={config} defaultTheme="celluloid">
       <View style={styles.container}>
         <Button>hello</Button>
         <Text>You're up and running</Text>

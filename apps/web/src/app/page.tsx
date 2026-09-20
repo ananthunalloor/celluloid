@@ -1,15 +1,12 @@
 'use client';
 
-import { Button, Theme, YStack } from '@org/ui';
+import { Button, YStack } from '@org/ui';
 
 export default function Index() {
   return (
-    <YStack flex={1} padding="$4" gap="$4" background="$background">
+    <YStack flex={1} padding="$4" gap="$4" alignItems="flex-start">
       <Button>Celluloid</Button>
-
-      <Theme name="celluloid_accent">
-        <Button>Accent</Button>
-      </Theme>
+      <Button>Accent</Button>
     </YStack>
   );
 }

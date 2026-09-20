@@ -1,5 +1,11 @@
 import { createFont } from '@tamagui/core';
+import { Platform } from 'react-native';
 import { config as defaultConfig } from '@tamagui/config/v3';
+
+const systemFontFamily = Platform.select({
+  web: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+  default: 'System',
+});
 
 const size = {
   1: 12,
@@ -46,7 +52,7 @@ const letterSpacing = {
 };
 
 const bodyFont = createFont({
-  family: 'System',
+  family: systemFontFamily,
   size,
   lineHeight,
   weight,
@@ -54,7 +60,7 @@ const bodyFont = createFont({
 });
 
 const headingFont = createFont({
-  family: 'System',
+  family: systemFontFamily,
   size,
   lineHeight,
   weight: { 6: '600', 7: '700', 8: '800', 9: '800' },

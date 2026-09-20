@@ -1,5 +1,3 @@
-import '../tamagui.generated.css';
-
 import { ThemeProviders } from './providers';
 
 export const metadata = {
