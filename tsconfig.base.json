@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "composite": true,
+    "customConditions": ["@org/source"],
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
@@ -12,15 +13,14 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "noUncheckedSideEffectImports": false,
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@org/source"],
-    "noUncheckedSideEffectImports": false,
     "types": ["*"]
   },
   "paths": {
-    "@org/ui": ["packages/ui/src/index.ts"]
+    "@celluloid/ui": ["packages/ui/src/index.ts"]
   }
 }

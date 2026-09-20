@@ -1,23 +1,8 @@
 {
-  "name": "@org/mobile",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "eas-build-post-install": "cd ../../ && node tools/scripts/eas-build-post-install.mjs . apps/mobile"
-  },
-  "nx": {
-    "targets": {
-      "format": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "oxfmt --write {projectRoot}"
-        }
-      }
-    }
-  },
   "dependencies": {
-    "@expo/vector-icons": "*",
+    "@celluloid/ui": "workspace:*",
     "@expo/metro": "*",
+    "@expo/vector-icons": "*",
     "@testing-library/react-native": "*",
     "expo": "*",
     "expo-splash-screen": "*",
@@ -28,7 +13,22 @@
     "react-native": "*",
     "react-native-svg": "*",
     "react-native-svg-transformer": "*",
-    "react-native-web": "*",
-    "@org/ui": "workspace:*"
-  }
+    "react-native-web": "*"
+  },
+  "name": "@org/mobile",
+  "nx": {
+    "targets": {
+      "format": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "oxfmt --write {projectRoot}"
+        }
+      }
+    }
+  },
+  "private": true,
+  "scripts": {
+    "eas-build-post-install": "cd ../../ && node tools/scripts/eas-build-post-install.mjs . apps/mobile"
+  },
+  "version": "0.0.1"
 }

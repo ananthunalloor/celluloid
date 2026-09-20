@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from 'react-native';
-import { Button, config, TamaguiProvider } from '@org/ui';
+import { Button, config, TamaguiProvider } from '@celluloid/ui';
 
 export const App = () => {
   return (

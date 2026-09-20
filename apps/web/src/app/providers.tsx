@@ -1,6 +1,6 @@
 'use client';
 
-import { TamaguiProvider, config } from '@org/ui';
+import { TamaguiProvider, config } from '@celluloid/ui';
 
 export function ThemeProviders({ children }: { children: React.ReactNode }) {
   return (

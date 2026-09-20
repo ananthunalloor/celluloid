@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@org/ui": "workspace:*",
+    "@celluloid/ui": "workspace:*",
     "@tamagui/config": "^2.7.7",
     "@tamagui/core": "^2.7.7",
     "@tamagui/web": "^2.7.7",

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, YStack } from '@org/ui';
+import { Button, YStack } from '@celluloid/ui';
 
 export default function Index() {
   return (

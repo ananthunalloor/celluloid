@@ -1,4 +1,4 @@
-import { config as appConfig } from '@org/ui';
+import { config as appConfig } from '@celluloid/ui';
 
 export const config = appConfig;
 

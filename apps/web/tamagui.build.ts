@@ -1,4 +1,4 @@
-import { TamaguiBuildOptions } from '@org/ui';
+import { TamaguiBuildOptions } from '@celluloid/ui';
 
 export default {
   config: './tamagui.config.ts',

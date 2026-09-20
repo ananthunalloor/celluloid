@@ -3,7 +3,7 @@
     [
       "@tamagui/babel-plugin",
       {
-        "components": ["tamagui", "@org/ui"],
+        "components": ["tamagui", "@celluloid/ui"],
         "config": "../../packages/ui/src/config/tamagui.config.ts"
       }
     ]

@@ -1,6 +1,6 @@
 const nextConfig = {
   transpilePackages: [
-    '@org/ui',
+    '@celluloid/ui',
     'tamagui',
     '@tamagui/core',
     'expo-blur',
