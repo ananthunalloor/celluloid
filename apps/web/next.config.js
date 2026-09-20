@@ -1,4 +1,5 @@
 const nextConfig = {
+  output: 'standalone',
   transpilePackages: [
     '@celluloid/ui',
     'tamagui',

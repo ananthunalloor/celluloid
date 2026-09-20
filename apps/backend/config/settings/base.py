@@ -15,7 +15,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
-    default="django-insecure-zbk*l1n@io=snb27)tt=%b1g#$qb&)d78x(4stgn-=2n***u%g",
+    default="django-insecure-zbk*l1n@io=snb27)tt=%b1g#qb&)d78x(4stgn-=2n***u%g",
 )
 
 INSTALLED_APPS = [
