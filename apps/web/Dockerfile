@@ -1,104 +1,55 @@
- ARG NODE_VERSION=24.14.0-slim
+ARG NODE_VERSION=24.14.0-slim
 
-  FROM node:${NODE_VERSION} AS dependencies
+FROM node:${NODE_VERSION} AS deps
+WORKDIR /repo
 
-  # Set working directory
-  WORKDIR /app
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc* ./
+COPY apps/web/package.json apps/web/package.json
+COPY packages/ui/package.json packages/ui/package.json
 
-  # Copy package-related files first to leverage Docker's caching mechanism.
-  # The pnpm workspace manifest must be present so monorepo installs can
-  # honor workspace build scripts and dependency approvals.
-  COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* pnpm-workspace.yaml .npmrc* ./
+RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
+    corepack enable pnpm && pnpm install --frozen-lockfile
 
-  # Install project dependencies with frozen lockfile for reproducible builds
-  RUN --mount=type=cache,target=/root/.npm \
-      --mount=type=cache,target=/usr/local/share/.cache/yarn \
-      --mount=type=cache,target=/root/.local/share/pnpm/store \
-    if [ -f package-lock.json ]; then \
-      npm ci --no-audit --no-fund; \
-    elif [ -f yarn.lock ]; then \
-      corepack enable yarn && yarn install --frozen-lockfile --production=false; \
-    elif [ -f pnpm-lock.yaml ]; then \
-      corepack enable pnpm && pnpm install --frozen-lockfile; \
-    else \
-      echo "No lockfile found." && exit 1; \
-    fi
+FROM deps AS dev
+COPY . .
+WORKDIR /repo/apps/web
+EXPOSE 3000
+CMD ["pnpm", "exec", "next", "dev", "--turbopack", "-p", "3000"]
 
-  # ============================================
-  # Stage 2: Build Next.js application in standalone mode
-  # ============================================
+# ---------------------------------------------------------------------------
+# builder — production build, standalone output
+# ---------------------------------------------------------------------------
+FROM deps AS builder
+WORKDIR /repo
+COPY . .
 
-  FROM node:${NODE_VERSION} AS builder
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
-  # Set working directory
-  WORKDIR /app
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
-  # Copy project dependencies from dependencies stage
-  COPY --from=dependencies /app/node_modules ./node_modules
+RUN corepack enable pnpm && pnpm --filter @celluloid/web build
 
-  # Copy application source code
-  COPY . .
+# ---------------------------------------------------------------------------
+# prod — runs the standalone server only, no build toolchain, non-root
+# ---------------------------------------------------------------------------
+FROM node:${NODE_VERSION} AS prod
+WORKDIR /app
 
-  ENV NODE_ENV=production
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
-  # Next.js collects completely anonymous telemetry data about general usage.
-  # Learn more here: https://nextjs.org/telemetry
-  # Uncomment the following line in case you want to disable telemetry during the build.
-  ENV NEXT_TELEMETRY_DISABLED=1
+COPY --from=builder --chown=node:node /repo/apps/web/public ./public
+RUN mkdir .next && chown node:node .next
+COPY --from=builder --chown=node:node /repo/apps/web/.next/standalone/apps/web ./
+COPY --from=builder --chown=node:node /repo/apps/web/.next/static ./.next/static
 
-  # Build the web app from its actual workspace directory.
-  # The app script lives under apps/web rather than the repo root.
-  RUN if [ -f package-lock.json ]; then \
-      cd apps/web && npm run build; \
-    elif [ -f yarn.lock ]; then \
-      cd apps/web && corepack enable yarn && yarn build; \
-    elif [ -f pnpm-lock.yaml ]; then \
-      cd apps/web && corepack enable pnpm && pnpm build; \
-    else \
-      echo "No lockfile found." && exit 1; \
-    fi
+USER node
+EXPOSE 3000
 
-  # ============================================
-  # Stage 3: Run Next.js application
-  # ============================================
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD node -e "fetch('http://localhost:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
-  FROM node:${NODE_VERSION} AS runner
-
-  # Set working directory
-  WORKDIR /app
-
-  # Set production environment variables
-  ENV NODE_ENV=production
-  ENV PORT=3000
-  ENV HOSTNAME="0.0.0.0"
-
-  # Next.js collects completely anonymous telemetry data about general usage.
-  # Learn more here: https://nextjs.org/telemetry
-  # Uncomment the following line in case you want to disable telemetry during the run time.
-  # ENV NEXT_TELEMETRY_DISABLED=1
-
-  # Copy production assets from the app workspace.
-  COPY --from=builder --chown=node:node /app/apps/web/public ./public
-
-  # Set the correct permission for prerender cache
-  RUN mkdir .next
-  RUN chown node:node .next
-
-  # Automatically leverage output traces to reduce image size.
-  # Next.js emits the standalone app under apps/web/.next/standalone/apps/web,
-  # so we copy that nested app to /app and start the server from there.
-  COPY --from=builder --chown=node:node /app/apps/web/.next/standalone/apps/web ./
-  COPY --from=builder --chown=node:node /app/apps/web/.next/static ./.next/static
-
-  # If you want to persist the fetch cache generated during the build so that
-  # cached responses are available immediately on startup, uncomment this line:
-  # COPY --from=builder --chown=node:node /app/.next/cache ./.next/cache
-
-  # Switch to non-root user for security best practices
-  USER node
-
-  # Expose port 3000 to allow HTTP traffic
-  EXPOSE 3000
-
-  # Start Next.js standalone server
-  CMD ["node", "server.js"]
+CMD ["node", "server.js"]

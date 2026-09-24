@@ -17,7 +17,7 @@ This is an Nx monorepo.
 
 ```bash
 cp infra/env/.env.example infra/env/.env
-docker compose -f infra/compose/docker-compose.yml up --build
+docker compose --env-file infra/env/.env -f infra/compose/docker-compose.yml up --build
 ```
 
 The API runs at http://localhost:8000, the web app at http://localhost:3000.
