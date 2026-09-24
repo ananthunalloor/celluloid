@@ -37,6 +37,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+*.patch
+.env
 
 .nx/cache
 .nx/workspace-data
@@ -53,6 +55,7 @@ Thumbs.db
 .next
 .tamagui
 out
+_tmp*
 
 # Expo
 node_modules/

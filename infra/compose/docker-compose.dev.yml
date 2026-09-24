@@ -1,0 +1,47 @@
+services:
+  db:
+    ports:
+      - '5432:5432' # for local DB GUI — dev only
+
+  cache:
+    ports:
+      - '6379:6379'
+
+  minio:
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+
+  backend:
+    build:
+      target: dev
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.dev
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      CELERY_BROKER_URL: redis://cache:6379/0
+    volumes:
+      - ../../apps/backend:/app
+      # Anonymous volume: keeps the image's own .venv (built for the
+      # container's Python/arch) instead of the host's, which the bind
+      # mount above would otherwise shadow — and which uv can't reuse
+      # anyway, since it's owned by the host user, not the app user.
+      - /app/.venv
+    ports:
+      - '8000:8000'
+
+  web:
+    build:
+      target: dev
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    volumes:
+      - ../../apps/web:/repo/apps/web
+      - ../../packages:/repo/packages
+      # Anonymous volumes: without these, the bind mounts above would hide
+      # the node_modules that were installed inside the image during
+      # `pnpm install`, since pnpm hoists most packages to these two
+      # locations rather than into apps/web/node_modules alone.
+      - /repo/node_modules
+      - /repo/apps/web/node_modules
+    ports:
+      - '3000:3000'

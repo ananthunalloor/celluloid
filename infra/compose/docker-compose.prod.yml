@@ -1,0 +1,56 @@
+services:
+  db:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  cache:
+    restart: always
+
+  minio:
+    restart: always
+
+  backend:
+    build:
+      target: prod
+      args:
+        # Only affects collectstatic during the build — the real runtime
+        # secret still comes from the environment block below.
+        DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in infra/env/.env}
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.prod
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      CELERY_BROKER_URL: redis://cache:6379/0
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in infra/env/.env}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:?Set DJANGO_ALLOWED_HOSTS in infra/env/.env}
+      DJANGO_CORS_ALLOWED_ORIGINS: ${DJANGO_CORS_ALLOWED_ORIGINS:?Set DJANGO_CORS_ALLOWED_ORIGINS in infra/env/.env}
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    ports:
+      - '8000:8000'
+
+  web:
+    build:
+      target: prod
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:?Set NEXT_PUBLIC_API_URL in infra/env/.env}
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    ports:
+      - '3000:3000'

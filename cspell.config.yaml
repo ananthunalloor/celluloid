@@ -1,8 +1,29 @@
-version: "0.2"
+version: '0.2'
 ignorePaths: []
 dictionaryDefinitions: []
-dictionaries: []
+dictionaries:
+  - en_US
+  - en-gb
+  - companies
+  - softwareTerms
+  - misc
+  - python
+  - typescript
+  - node
+  - html
+  - css
+  - bash
+  - docker
+  - npm
+  - fonts
+  - fileTypes
 words:
+  - collectstatic
+  - corsheaders
+  - isready
+  - simplejwt
   - Tamagui
+  - tmpfs
+  - venv
 ignoreWords: []
 import: []
