@@ -1,24 +1,15 @@
-# Base file: service definitions common to every environment. Always used
-# together with an overlay — this file alone defines no ports and no
-# build target, so `docker compose -f docker-compose.yml up` on its own
-# won't do anything useful. See docker-compose.dev.yml / .prod.yml.
-
 services:
   db:
     image: postgres:16.6-alpine
     container_name: celluloid-db
     environment:
-      # No fallback default for any of these three — a weak, checked-in
-      # default password is exactly what infra/env/.env is meant to avoid.
-      # `:?` makes compose fail immediately with a clear message instead
-      # of silently starting Postgres with an empty or guessable password.
       POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in infra/env/.env}
       POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in infra/env/.env}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in infra/env/.env}
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}']
       interval: 10s
       timeout: 5s
       retries: 5
@@ -27,7 +18,7 @@ services:
     image: redis:7.4-alpine
     container_name: celluloid-cache
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ['CMD', 'redis-cli', 'ping']
       interval: 10s
       timeout: 5s
       retries: 5
@@ -42,7 +33,7 @@ services:
     volumes:
       - minio_data:/data
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
       interval: 15s
       timeout: 5s
       retries: 5
