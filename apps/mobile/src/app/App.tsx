@@ -1,21 +1,25 @@
-import { StyleSheet, View, Text } from 'react-native';
-import { Button, config, TamaguiProvider } from '@celluloid/ui';
+import { useState } from 'react';
+import { config, TamaguiProvider, LoginScreen, SignupScreen } from '@celluloid/ui';
 
 export const App = () => {
+  const [screen, setScreen] = useState<'login' | 'signup'>('login');
+
   return (
     <TamaguiProvider config={config} defaultTheme="celluloid">
-      <View style={styles.container}>
-        <Button>hello</Button>
-        <Text>You're up and running</Text>
-      </View>
+      {screen === 'login' ? (
+        <LoginScreen
+          onSubmit={(values) => console.log('login submit', values)}
+          onForgotPassword={() => console.log('forgot password')}
+          onGoToSignup={() => setScreen('signup')}
+        />
+      ) : (
+        <SignupScreen
+          onSubmit={(values) => console.log('signup submit', values)}
+          onGoToLogin={() => setScreen('login')}
+        />
+      )}
     </TamaguiProvider>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-});
 
 export default App;

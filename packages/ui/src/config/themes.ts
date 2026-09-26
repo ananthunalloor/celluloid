@@ -27,22 +27,44 @@ const celluloid = {
 };
 
 const celluloid_accent = {
-  background: brandColors.accent6,
-  backgroundHover: brandColors.accent5,
-  backgroundPress: brandColors.accent7,
-  backgroundFocus: brandColors.accent7,
-  backgroundStrong: brandColors.accent8,
+  background: brandColors.accent7,
+  backgroundHover: brandColors.accent8,
+  backgroundPress: brandColors.accent9,
+  backgroundFocus: brandColors.accent8,
+  backgroundStrong: brandColors.accent9,
 
   color: brandColors.textOnAccent,
   colorHover: brandColors.textOnAccent,
   colorPress: brandColors.textOnAccent,
   colorFocus: brandColors.textOnAccent,
 
-  borderColor: brandColors.accent7,
-  borderColorHover: brandColors.accent8,
+  borderColor: brandColors.accent8,
+  borderColorHover: brandColors.accent9,
 
   placeholderColor: brandColors.textOnAccent,
   outlineColor: brandColors.textOnAccent,
+
+  shadowColor: 'rgba(2,4,10,0.25)',
+  shadowColorHover: 'rgba(2,4,10,0.35)',
+};
+
+const celluloid_complementary = {
+  background: brandColors.warning,
+  backgroundHover: brandColors.warningStrong,
+  backgroundPress: brandColors.warningStrong,
+  backgroundFocus: brandColors.warningStrong,
+  backgroundStrong: brandColors.warningStrong,
+
+  color: brandColors.textOnComplementary,
+  colorHover: brandColors.textOnComplementary,
+  colorPress: brandColors.textOnComplementary,
+  colorFocus: brandColors.textOnComplementary,
+
+  borderColor: brandColors.warningStrong,
+  borderColorHover: brandColors.warningStrong,
+
+  placeholderColor: brandColors.textOnComplementary,
+  outlineColor: brandColors.textOnComplementary,
 
   shadowColor: 'rgba(2,4,10,0.25)',
   shadowColorHover: 'rgba(2,4,10,0.35)',
@@ -52,4 +74,5 @@ export const themes = {
   ...defaultConfig.themes,
   celluloid,
   celluloid_accent,
+  celluloid_complementary,
 };

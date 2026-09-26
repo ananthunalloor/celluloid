@@ -1,15 +1,6 @@
 import { createTokens } from '@tamagui/core';
 import { config as defaultConfig } from '@tamagui/config/v3';
 
-/**
- * The raw color values, exported on their own so themes.ts can use the
- * literal hex/rgba values directly. Tamagui does NOT auto-resolve a
- * '$tokenName' string inside a hand-written theme object — that only
- * happens for themes built through its own theme-builder pipeline, which
- * pre-bakes the var(--c-x) reference when the palette is built. A plain
- * object needs the literal value, so themes.ts imports this instead of
- * writing '$bgBase' as a string.
- */
 export const brandColors = {
   // Background — dark blue, darkest to lightest surface
   bgDeepest: '#02040a',
@@ -18,24 +9,24 @@ export const brandColors = {
   bgElevated: '#122047',
   bgBorder: '#1a2c5c',
   bgBorderStrong: '#24397a',
-
-  // Text — on the dark blue background, low to high emphasis
-  textMuted: '#5b6a94',
+  textMuted: '#7889b3',
   textSecondary: '#8fa0c9',
   textPrimary: '#e8eefc',
-  textOnAccent: '#04101f',
+  textOnAccent: '#f0f6ff',
+  textOnComplementary: '#241a04',
 
-  // Accent — light blue, for buttons, links, focus rings
+  // Accent
   accent1: '#eaf6ff',
   accent2: '#c3e6ff',
   accent3: '#94d3ff',
   accent4: '#5fbcff',
   accent5: '#2fa3ff',
-  accent6: '#1487e8', // primary accent
-  accent7: '#0f6dbf',
-  accent8: '#0b5596',
+  accent6: '#1487e8', // link / inline accent text
+  accent7: '#0f6dbf', // button default
+  accent8: '#0b5596', // button hover
+  accent9: '#073c68', // button pressed
 
-  // Semantic — unrelated to the color rebrand, kept stable
+  // Semantic
   success: '#22c55e',
   successStrong: '#16a34a',
   warning: '#eab308',
@@ -45,7 +36,7 @@ export const brandColors = {
   info: '#3b82f6',
   infoStrong: '#2563eb',
 
-  // Glass surfaces — semi-transparent, paired with GlassCard's blur
+  // Glass surfaces
   glassSurface: 'rgba(13, 23, 48, 0.55)',
   glassSurfaceStrong: 'rgba(13, 23, 48, 0.75)',
   glassBorder: 'rgba(148, 211, 255, 0.18)',
