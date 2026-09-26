@@ -30,6 +30,8 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "babel-preset-expo": "~56.0.14",
+    "husky": "*",
+    "lint-staged": "*",
     "nx": "23.2.0",
     "oxfmt": "^0.68.0",
     "oxlint": "^1.75.0",
@@ -39,6 +41,8 @@
   "license": "MIT",
   "name": "@celluloid/source",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky"
+  },
   "version": "0.0.0"
 }
