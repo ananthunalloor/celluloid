@@ -1,0 +1,10 @@
+
+http://localhost {
+	reverse_proxy web:3000
+	log
+}
+
+http://api.localhost {
+	reverse_proxy backend:8000
+	log
+}

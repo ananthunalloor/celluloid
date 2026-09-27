@@ -24,6 +24,7 @@ RUN uv sync --frozen
 # ---------------------------------------------------------------------------
 FROM deps-dev AS dev
 COPY --chown=app:app . .
+RUN chown -R app:app /app/.venv
 
 ENV PATH="/app/.venv/bin:$PATH" \
     UV_CACHE_DIR=/tmp/uv-cache
@@ -55,7 +56,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN addgroup --system app && adduser --system --ingroup app --home /app app
 WORKDIR /app
 
-COPY --from=deps-prod /app/.venv /app/.venv
+COPY --chown=app:app --from=deps-prod /app/.venv /app/.venv
+RUN chown -R app:app /app/.venv
 
 COPY --chown=app:app . .
 
