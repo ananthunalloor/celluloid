@@ -1,9 +1,9 @@
-import { Controller, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller } from 'react-hook-form';
 import { YStack, XStack, Text, Button, Theme } from 'tamagui';
-import { AuthLayout } from './AuthLayout';
-import { FormField } from './FormField';
-import { loginSchema, type LoginFormValues } from '../schemas/auth';
+import { AuthLayout } from './auth-layout';
+import { FormField } from './form-field';
+import { type LoginFormValues } from '../../schemas/auth';
+import { useLoginForm } from './use-login.form';
 
 export interface LoginScreenProps {
   onSubmit?: (values: LoginFormValues) => void;
@@ -12,10 +12,7 @@ export interface LoginScreenProps {
 }
 
 export function LoginScreen({ onSubmit, onForgotPassword, onGoToSignup }: LoginScreenProps) {
-  const { control, handleSubmit } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: { email: '', password: '', remember: false },
-  });
+  const { control, handleSubmit } = useLoginForm({});
 
   return (
     <AuthLayout title="Welcome back" subtitle="Log in to keep track of what you've watched">
@@ -99,7 +96,13 @@ export function LoginScreen({ onSubmit, onForgotPassword, onGoToSignup }: LoginS
         <Text fontSize="$2" color="$textSecondary">
           Don&apos;t have an account?
         </Text>
-        <Text fontSize="$2" color="$accent6" fontWeight="500" cursor="pointer" onPress={onGoToSignup}>
+        <Text
+          fontSize="$2"
+          color="$accent6"
+          fontWeight="500"
+          cursor="pointer"
+          onPress={onGoToSignup}
+        >
           Sign up
         </Text>
       </XStack>
