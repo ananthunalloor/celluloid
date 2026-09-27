@@ -35,8 +35,6 @@ services:
         limits:
           cpus: '1.0'
           memory: 512M
-    ports:
-      - '8000:8000'
 
   web:
     build:
@@ -52,5 +50,15 @@ services:
         limits:
           cpus: '1.0'
           memory: 512M
+
+  caddy:
+    volumes:
+      - ../caddy/Caddyfile.prod:/etc/caddy/Caddyfile:ro
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in infra/env/.env}
+      CADDY_ACME_EMAIL: ${CADDY_ACME_EMAIL:?Set CADDY_ACME_EMAIL in infra/env/.env}
+    restart: unless-stopped
     ports:
-      - '3000:3000'
+      - '80:80'
+      - '443:443'
+      - '443:443/udp' # HTTP/3 (QUIC)

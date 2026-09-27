@@ -15,6 +15,7 @@ services:
   backend:
     build:
       target: dev
+    user: '0:0'
     environment:
       DJANGO_SETTINGS_MODULE: config.settings.dev
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
@@ -26,6 +27,12 @@ services:
       # mount above would otherwise shadow — and which uv can't reuse
       # anyway, since it's owned by the host user, not the app user.
       - /app/.venv
+    command:
+      - /bin/sh
+      - -lc
+      - |
+        chown -R app:app /app/.venv &&
+        exec su -s /bin/sh app -c 'uv run python manage.py runserver 0.0.0.0:8000'
     ports:
       - '8000:8000'
 
@@ -45,3 +52,9 @@ services:
       - /repo/apps/web/node_modules
     ports:
       - '3000:3000'
+
+  caddy:
+    volumes:
+      - ../caddy/Caddyfile.dev:/etc/caddy/Caddyfile:ro
+    ports:
+      - '80:80'
