@@ -23,7 +23,8 @@
           "imageWidth": 200,
           "resizeMode": "contain"
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "scheme": "@celluloid/mobile",
     "slug": "@celluloid/mobile",
