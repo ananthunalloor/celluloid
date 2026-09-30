@@ -10,7 +10,14 @@ const nextConfig = {
   // .next/standalone — the build succeeds but the runtime import fails.
   outputFileTracingRoot: path.join(__dirname, '../../'),
 
-  transpilePackages: ['@celluloid/i18n', '@celluloid/ui', 'tamagui', '@tamagui/core', 'expo-blur'],
+  transpilePackages: [
+    '@celluloid/api',
+    '@celluloid/i18n',
+    '@celluloid/ui',
+    'tamagui',
+    '@tamagui/core',
+    'expo-blur',
+  ],
 
   turbopack: {
     resolveAlias: {

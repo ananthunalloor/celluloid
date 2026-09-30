@@ -3,4 +3,8 @@ export * from './screens/auth/auth-layout';
 export * from './screens/auth/form-field';
 export * from './screens/auth/login-screen';
 export * from './screens/auth/signup-screen';
+export * from './screens/auth/forgot-password-screen';
+export * from './screens/auth/reset-password-screen';
+export * from './screens/auth/verify-email-screen';
+export * from './screens/auth/profile-screen';
 export * from 'tamagui';

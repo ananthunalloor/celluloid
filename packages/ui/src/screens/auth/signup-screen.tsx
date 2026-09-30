@@ -8,9 +8,11 @@ import { useSignupForm } from './use-signup.form';
 export interface SignupScreenProps {
   onSubmit?: (values: SignupFormValues) => void;
   onGoToLogin?: () => void;
+  isSubmitting?: boolean;
+  error?: string;
 }
 
-export function SignupScreen({ onSubmit, onGoToLogin }: SignupScreenProps) {
+export function SignupScreen({ onSubmit, onGoToLogin, isSubmitting, error }: SignupScreenProps) {
   const { control, handleSubmit } = useSignupForm({});
 
   return (
@@ -18,6 +20,12 @@ export function SignupScreen({ onSubmit, onGoToLogin }: SignupScreenProps) {
       title="Create your account"
       subtitle="Join Celluloid to write reviews and track what you watch"
     >
+      {error ? (
+        <Text fontSize="$1" color="$danger">
+          {error}
+        </Text>
+      ) : null}
+
       <Controller
         control={control}
         name="name"
@@ -83,7 +91,11 @@ export function SignupScreen({ onSubmit, onGoToLogin }: SignupScreenProps) {
       />
 
       <Theme name="celluloid_complementary">
-        <Button onPress={handleSubmit((values) => onSubmit?.(values))} size="$4">
+        <Button
+          onPress={handleSubmit((values) => onSubmit?.(values))}
+          disabled={isSubmitting}
+          size="$4"
+        >
           Create account
         </Button>
       </Theme>

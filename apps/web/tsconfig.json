@@ -15,7 +15,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@celluloid/i18n": ["../../packages/i18n/src/index.ts"],
-      "@celluloid/ui": ["../../packages/ui/src/index.ts"]
+      "@celluloid/ui": ["../../packages/ui/src/index.ts"],
+      "@celluloid/api": ["../../packages/api/src/index.ts"]
     },
     "plugins": [
       {
@@ -53,6 +54,9 @@
     },
     {
       "path": "../../packages/i18n"
+    },
+    {
+      "path": "../../packages/api"
     }
   ]
 }

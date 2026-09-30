@@ -36,6 +36,24 @@ services:
     ports:
       - '8000:8000'
 
+  worker:
+    build:
+      target: dev
+    user: '0:0'
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.dev
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      CELERY_BROKER_URL: redis://cache:6379/0
+    volumes:
+      - ../../apps/backend:/app
+      - /app/.venv
+    command:
+      - /bin/sh
+      - -lc
+      - |
+        chown -R app:app /app/.venv &&
+        exec su -s /bin/sh app -c 'uv run celery -A config worker -l info'
+
   web:
     build:
       target: dev

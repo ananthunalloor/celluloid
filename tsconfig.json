@@ -14,6 +14,9 @@
     },
     {
       "path": "./packages/i18n"
+    },
+    {
+      "path": "./packages/api"
     }
   ],
   "compilerOptions": {}

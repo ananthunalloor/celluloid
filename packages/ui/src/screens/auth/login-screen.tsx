@@ -9,13 +9,27 @@ export interface LoginScreenProps {
   onSubmit?: (values: LoginFormValues) => void;
   onForgotPassword?: () => void;
   onGoToSignup?: () => void;
+  isSubmitting?: boolean;
+  error?: string;
 }
 
-export function LoginScreen({ onSubmit, onForgotPassword, onGoToSignup }: LoginScreenProps) {
+export function LoginScreen({
+  onSubmit,
+  onForgotPassword,
+  onGoToSignup,
+  isSubmitting,
+  error,
+}: LoginScreenProps) {
   const { control, handleSubmit } = useLoginForm({});
 
   return (
     <AuthLayout title="Welcome back" subtitle="Log in to keep track of what you've watched">
+      {error ? (
+        <Text fontSize="$1" color="$danger">
+          {error}
+        </Text>
+      ) : null}
+
       <Controller
         control={control}
         name="email"
@@ -87,7 +101,11 @@ export function LoginScreen({ onSubmit, onForgotPassword, onGoToSignup }: LoginS
       </XStack>
 
       <Theme name="celluloid_accent">
-        <Button onPress={handleSubmit((values) => onSubmit?.(values))} size="$4">
+        <Button
+          onPress={handleSubmit((values) => onSubmit?.(values))}
+          disabled={isSubmitting}
+          size="$4"
+        >
           Log in
         </Button>
       </Theme>

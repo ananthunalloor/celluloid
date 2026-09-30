@@ -21,3 +21,27 @@ export const signupSchema = z
   });
 
 export type SignupFormValues = z.infer<typeof signupSchema>;
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().min(1, 'Enter your email address.').email('Enter a valid email address.'),
+});
+
+export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
+
+export const resetPasswordSchema = z
+  .object({
+    password: z.string().min(8, 'Use at least 8 characters.'),
+    confirmPassword: z.string().min(1, 'Repeat your password.'),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match.",
+    path: ['confirmPassword'],
+  });
+
+export type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
+
+export const profileSchema = z.object({
+  name: z.string().min(1, 'Enter your name.'),
+});
+
+export type ProfileFormValues = z.infer<typeof profileSchema>;

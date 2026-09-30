@@ -1,9 +1,12 @@
 {
   "dependencies": {
+    "@celluloid/api": "workspace:*",
     "@celluloid/i18n": "workspace:*",
     "@celluloid/ui": "workspace:*",
     "@expo/metro": "*",
     "@expo/vector-icons": "*",
+    "@react-native-async-storage/async-storage": "*",
+    "@tanstack/react-query": "^5.90.2",
     "@testing-library/react-native": "*",
     "expo": "*",
     "expo-localization": "~56.0.6",
@@ -18,7 +21,8 @@
     "react-native": "*",
     "react-native-svg": "*",
     "react-native-svg-transformer": "*",
-    "react-native-web": "*"
+    "react-native-web": "*",
+    "zustand": "^5.0.8"
   },
   "name": "@celluloid/mobile",
   "nx": {

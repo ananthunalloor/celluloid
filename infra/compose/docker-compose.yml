@@ -52,6 +52,18 @@ services:
       minio:
         condition: service_healthy
 
+  worker:
+    container_name: celluloid-worker
+    build:
+      context: ../../apps/backend
+    env_file:
+      - ../env/.env
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+
   web:
     container_name: celluloid-web
     build:
