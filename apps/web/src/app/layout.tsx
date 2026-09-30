@@ -1,4 +1,7 @@
 import '../../public/tamagui.generated.css';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
+
 import { ThemeProviders } from './providers';
 
 export const metadata = {
@@ -6,11 +9,16 @@ export const metadata = {
   description: 'Hello welcome to celluloid web app',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body>
-        <ThemeProviders>{children}</ThemeProviders>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProviders>{children}</ThemeProviders>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

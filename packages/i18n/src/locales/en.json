@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "signUp": "Sign up"
+  },
+  "navigation": {
+    "anime": "Anime ddd"
+  }
+}

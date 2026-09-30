@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "signUp": "Registrieren"
+  },
+  "navigation": {
+    "anime": "Anime sksks"
+  }
+}
