@@ -6,34 +6,7 @@
     "signOut": "Abmelden",
     "signUp": "Registrieren"
   },
-  "catalog": {
-    "popular": "Beliebt",
-    "releaseDate": "Veröffentlichungsdatum",
-    "topRated": "Am besten bewertet",
-    "trending": "Im Trend"
-  },
-  "common": {
-    "appName": "Celluloid",
-    "cancel": "Abbrechen",
-    "close": "Schließen",
-    "error": "Etwas ist schiefgelaufen",
-    "language": "Sprache",
-    "loading": "Wird geladen…",
-    "retry": "Erneut versuchen",
-    "save": "Speichern",
-    "search": "Suchen"
-  },
   "navigation": {
-    "anime": "Anime",
-    "home": "Startseite",
-    "movies": "Filme",
-    "profile": "Profil",
-    "reviews": "Bewertungen",
-    "tvShows": "Serien",
-    "watchlist": "Merkliste"
-  },
-  "reviews": {
-    "review": "Bewertung",
-    "reviews": "{count, plural, =0 {Keine Bewertungen} =1 {# Bewertung} other {# Bewertungen}}"
+    "anime": "Anime sksks"
   }
 }

@@ -6,34 +6,7 @@
     "signOut": "Sign out",
     "signUp": "Sign up"
   },
-  "catalog": {
-    "popular": "Popular",
-    "releaseDate": "Release date",
-    "topRated": "Top rated",
-    "trending": "Trending"
-  },
-  "common": {
-    "appName": "Celluloid",
-    "cancel": "Cancel",
-    "close": "Close",
-    "error": "Something went wrong",
-    "language": "Language",
-    "loading": "Loading…",
-    "retry": "Retry",
-    "save": "Save",
-    "search": "Search"
-  },
   "navigation": {
-    "anime": "Anime",
-    "home": "Home",
-    "movies": "Movies",
-    "profile": "Profile",
-    "reviews": "Reviews",
-    "tvShows": "TV Shows",
-    "watchlist": "Watchlist"
-  },
-  "reviews": {
-    "review": "Review",
-    "reviews": "{count, plural, =0 {No reviews} =1 {# review} other {# reviews}}"
+    "anime": "Anime ddd"
   }
 }

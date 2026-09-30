@@ -1,4 +1,11 @@
+import de from './locales/de.json';
+import en from './locales/en.json';
+
 export * from './config';
 
-export { default as en } from './locales/en.json';
-export { default as de } from './locales/de.json';
+export { de, en };
+
+export const messages = {
+  en,
+  de,
+} as const;

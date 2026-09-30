@@ -1,17 +1,14 @@
-import { getRequestConfig } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { messages } from '@celluloid/i18n';
 import { routing } from './routing';
-import type { Locale } from '@celluloid/i18n';
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  const locale = await requestLocale;
+import { getRequestConfig } from 'next-intl/server';
 
-  if (!locale || !routing.locales.includes(locale as Locale)) {
-    notFound();
-  }
+export default getRequestConfig(async ({ locale }) => {
+  console.log('locakle', locale);
+  const resolvedLocale = locale ? locale : routing.defaultLocale;
 
   return {
-    locale,
-    messages: (await import(`@celluloid/i18n/locales/${locale}.json`)).default,
+    locale: resolvedLocale,
+    messages: messages[resolvedLocale as keyof typeof messages],
   };
 });

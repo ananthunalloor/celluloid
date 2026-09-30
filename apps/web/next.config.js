@@ -1,4 +1,5 @@
 const path = require('node:path');
+const createNextIntlPlugin = require('next-intl/plugin');
 
 const nextConfig = {
   output: 'standalone',
@@ -9,7 +10,7 @@ const nextConfig = {
   // .next/standalone — the build succeeds but the runtime import fails.
   outputFileTracingRoot: path.join(__dirname, '../../'),
 
-  transpilePackages: ['@celluloid/ui', 'tamagui', '@tamagui/core', 'expo-blur'],
+  transpilePackages: ['@celluloid/i18n', '@celluloid/ui', 'tamagui', '@tamagui/core', 'expo-blur'],
 
   turbopack: {
     resolveAlias: {
@@ -19,4 +20,5 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+module.exports = withNextIntl(nextConfig);
